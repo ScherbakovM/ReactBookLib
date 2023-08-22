@@ -1,0 +1,58 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100dwh;
+  height: 100svh;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+}
+
+.library {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap:20px;
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.get,
+.getID,
+.post,
+.delete,
+.put{
+  
+}
+
+
+.outPut {
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 700px;
+  min-height: 500px;
+  border: 0.1px solid black;
+  box-sizing: border-box;
+
+}
+
+.setID {
+  
+  margin-bottom: 20px;
+
+}
+
+.id {
+  margin-left: 10px;
+}
