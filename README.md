@@ -31,21 +31,6 @@ npm install express --save
 ![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/a9809c38-1325-4bd3-a50b-7c0f19fedc6f)
 
 
-### Concurrently для одновременного запуска приложений
-
-```
-npm install concurrently
-```
-
-
-### Добавляем скрипт для одновременного запуска express js и react app 
-
-```
-"start": "concurrently \"npm run dev\" \"npm run server\"",
-```
-
-![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/5f57ee97-58e3-4ea0-887e-904384b595df)
-
 ### Axios для запросов на сервер
 
 ```
