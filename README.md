@@ -32,6 +32,12 @@ npm install express --save
 npm install concurrently
 ```
 
+### Добавляем скрипт для одновременного запуска express js server и react app 
+
+```
+"start": "concurrently \"npm run dev\" \"npm run server\"",
+```
+
 ### Axios для запросов на сервер
 
 ```
