@@ -1,8 +1,30 @@
-# React + Vite
+Online book library 📚
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Клиентское приложение React &#9883; + Сервер Node js &#128187;;
 
-Currently, two official plugins are available:
+Установка пакетов 
+### Сборщик проектов Vite
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+ npm create vite@latest
+```
+
+### Выбираем react + js
+
+### Сервер
+
+```
+npm install express --save
+```
+
+### Concurrently для одновременного запуска приложений
+
+```
+npm install concurrently
+```
+
+### Axios для запросов на сервер
+
+```
+ npm install axios 
+```
