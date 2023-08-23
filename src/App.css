@@ -12,8 +12,8 @@ body {
 #root {
   width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   min-height: 100svh;
 }
 
@@ -23,8 +23,13 @@ body {
   flex-direction: column;
   gap:20px;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 100px;
+  padding-bottom: 5%;
   text-align: center;
+}
+
+h1 {
+  width: 500px;
 }
 
 .get,
@@ -32,27 +37,109 @@ body {
 .post,
 .delete,
 .put{
-  
+  height: 30px;
 }
 
+.wrapperMenu {
+  width: 500px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
 
-.outPut {
+input {
+  margin-right: 20px;
+  width: 300px;
+}
+
+.button {
+  box-sizing: border-box;
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  width: 500px;
+  flex-wrap: wrap;
+  height: max-content;
+  display: flex;
+  gap: 10px;
+}
+
+.wrapperBookCard {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  width: 60%;
+  min-height: 100svh;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.bookCard {
   display: flex;
   justify-content: flex-start;
-  padding: 20px;
-  width: 700px;
-  min-height: 500px;
-  border: 0.1px solid black;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 10px;
+  width: 340px;
+  height: 520px;
+  border: 5px solid rgb(145, 18, 17);
   box-sizing: border-box;
-
+  overflow: hidden;
+  background-color: #f4e6bb;
 }
 
-.setID {
+.photoCard {
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+.photo {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.nameCard {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: flex-end;
+  text-align: left;
+  height: max-content;
+  width: 100%;
+  text-align: left;
+  font-size: 20px;
   
-  margin-bottom: 20px;
-
+}
+.authorCard {
+  padding-top: 1px;
+  padding-bottom: 5px;
+  text-align: left;
+  width: 100%;
+  height: max-content;
+  font-size: 18px;
+}
+.descriptionCard {
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: left;
+  width: 100%;
+  height: 300px;
+  overflow: auto;
+  background-color: rgb(249, 229, 170);
+  border: 5px solid white;
 }
 
+.description,
+.author,
+.name,
 .id {
   margin-left: 10px;
+}
+
+@media (width < 1700px) {
+  .wrapperBookCard {
+    width: 80%;
+  }
 }
