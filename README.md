@@ -35,7 +35,7 @@ npm install concurrently
 ```
 
 
-### Добавляем скрипт для одновременного запуска express js server и react app 
+### Добавляем скрипт для одновременного запуска express js и react app 
 
 ```
 "start": "concurrently \"npm run dev\" \"npm run server\"",
