@@ -3,6 +3,7 @@ import axios, { Axios } from 'axios';
 import React from "react";
 import book_png from './book.png';
 import Modal from "./Modal";
+import { motion, AnimatePresence } from "framer-motion";
 
 const server = 'http://localhost:80/lib'
 const serverDownload = 'http://localhost:80/download'
@@ -17,6 +18,8 @@ export const Library = () => {
     const [lib, setlib] = useState([])
     const [render, setRender] = useState(false)
     const [activeAlert, setActiveAlert] = useState(false)
+    const [activeCreate, setActiveCreate] = useState(false)
+    const [activeDetails, setActiveDetails] = useState(false)
     const [valueAlert, setAlertValue] = useState('')
 
 
@@ -110,33 +113,77 @@ export const Library = () => {
     return (
         <>
             <div className="library"><h1>Welcome to online library 📚</h1>
-                <div className="wrapperMenu">
-                    <div className="setName">Set name Book
-                        <input
-                            onChange={event => setNameValue(event.target.value)}
-                            className="name" value={nameValue}></input>
+                <div className="libWrapper">
+                    <div className="createWrapper">
+                        <motion.div
+                            className={"createDiv"}
+                        >
+                            <span className={"createSpan"}>Create</span>
+                        </motion.div>
+                        <AnimatePresence>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: .3 }}
+                                    exit={{ opacity: 0 }}
+                                    className={"wrapperMenu"}>
+                                    <div className="setName">Set name Book
+                                        <input
+                                            onChange={event => setNameValue(event.target.value)}
+                                            className="name" value={nameValue}></input>
+                                    </div>
+                                    <div className="setAuthor">Set author Book
+                                        <input
+                                            onChange={event => setAuthorValue(event.target.value)}
+                                            className="author" value={authorValue}></input>
+                                    </div>
+                                    <div className="setDescription">Set description
+                                        <input
+                                            onChange={event => setDescriptionValue(event.target.value)}
+                                            className="description" value={descriptionValue}></input>
+                                    </div>
+                                    <motion.div className="button">
+                                        <button title="Заполните все поля" onClick={clickLoadBook} className="post">download the book in library</button>
+                                        <button onClick={dellData} className="delete">remove book from library</button>
+                                    </motion.div>
+                                </motion.div>
+                        </AnimatePresence>
                     </div>
-                    <div className="setAuthor">Set author Book
-                        <input
-                            onChange={event => setAuthorValue(event.target.value)}
-                            className="author" value={authorValue}></input>
+                    <div className="detailsWrapper">
+                        <motion.div
+                            className={"detailsDiv"}
+                        >
+                            <span className={"detailsSpan"}>Change details</span>
+                        </motion.div>
+                        <AnimatePresence>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: .3 }}
+                                    exit={{ opacity: 0 }}
+                                    className={"wrapperMenu"}>
+                                    <div className="setName">Сurrent book name
+                                        <input
+                                            className="name"></input>
+                                    </div>
+                                    <div className="setName">New name Book
+                                        <input
+                                            className="name"></input>
+                                    </div>
+                                    <div className="setAuthor">New author Book
+                                        <input
+                                            className="author" ></input>
+                                    </div>
+                                    <div className="setDescription">New description
+                                        <input
+                                            className="description" ></input>
+                                    </div>
+                                    <motion.div className="button">
+                                        <button className="details">change book information</button>
+                                    </motion.div>
+                                </motion.div>
+                        </AnimatePresence>
                     </div>
-                    <div className="setDescription">Set description
-                        <input
-                            onChange={event => setDescriptionValue(event.target.value)}
-                            className="description" value={descriptionValue}></input>
-                    </div>
-                    {/* <div className="setID">Book ID to search
-                        <input
-                            onChange={event => setFindID(event.target.value)}
-                            className="id" value={findID}></input>
-                    </div> */}
-                </div>
-                <div className="button">
-                    {/* <button onClick={click} className="get">get a list of all books</button> */}
-                    <button title="Заполните все поля" onClick={clickLoadBook} className="post">download the book in library</button>
-                    <button onClick={dellData} className="delete">remove book from library</button>
-                    <button className="put" onClick={clickChangeDetails}>change book details</button>
                 </div>
                 <div className="wrapperBookCard">
                     {listBook}

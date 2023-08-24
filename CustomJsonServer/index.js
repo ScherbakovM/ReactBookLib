@@ -28,6 +28,8 @@ app.post('/download', jsonParser, function (req, res) {
 
 app.post('/dell', jsonParser, function (req, res) {
     deleteBook(req.body.nameCard)
+    res.send('ok')
+    res.end
 })
 
 app.listen(80, function () {
