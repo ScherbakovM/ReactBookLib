@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import './modal.css'
 import { Library } from './Library'
 
 function App() {

@@ -2,29 +2,32 @@ import { useState, useEffect } from "react";
 import axios, { Axios } from 'axios';
 import React from "react";
 import book_png from './book.png';
+import Modal from "./Modal";
 
-const server = 'http://localhost:80/lib';
-const serverDownload = 'http://localhost:80/download';
+const server = 'http://localhost:80/lib'
+const serverDownload = 'http://localhost:80/download'
 
 
 export const Library = () => {
 
-    const [findID, setFindID] = useState('');
-    const [nameValue, setNameValue] = useState('');
-    const [authorValue, setAuthorValue] = useState('');
-    const [descriptionValue, setDescriptionValue] = useState('');
-    const [lib, setlib] = useState([]);
+    const [findID, setFindID] = useState('')
+    const [nameValue, setNameValue] = useState('')
+    const [authorValue, setAuthorValue] = useState('')
+    const [descriptionValue, setDescriptionValue] = useState('')
+    const [lib, setlib] = useState([])
     const [render, setRender] = useState(false)
+    const [activeAlert, setActiveAlert] = useState(false)
+    const [valueAlert, setAlertValue] = useState('')
 
 
     useEffect(() => {
         axios
             .get(server)
             .then(response => {
-                setlib(response.data.Book)
+                setlib(response.data)
             }).catch(error => {
                 console.log(error.response.data)
-            }, [lib, render]);
+            }, [lib, render])
     })
 
 
@@ -42,7 +45,7 @@ export const Library = () => {
     ))
 
     function returnLastItem(arr) {
-        return arr[arr.length - 1];
+        return arr[arr.length - 1]
     }
 
     function clearInput() {
@@ -61,10 +64,10 @@ export const Library = () => {
             descriptionCard: descriptionValue
         })
             .then(function (response) {
-                console.log(response);
+                console.log(response)
             })
             .catch(function (error) {
-                console.log(error);
+                console.log(error)
             })
     }
 
@@ -73,15 +76,17 @@ export const Library = () => {
         const nextID = returnLastItem(lib).id + 1
         if (nameValue != '' && authorValue != '' && descriptionValue != '') {
             postData(nextID, nameValue, authorValue, descriptionValue)
+            clearInput()
         }
-        else alert('fill in the fields name Book , author, description')
+        else  {
+            setActiveAlert(true)
+            setAlertValue("fill in the fields name Book , author, description")
+        }
     }
 
-    function click() {
-        let lastItem = returnLastItem(lib)
-        console.log(`find id: ${findID}, name:  ${nameValue}, author : ${authorValue}, description : ${descriptionValue}`)
-        clearInput()
-        setRender(true)
+    function clickChangeDetails() {
+            setActiveAlert(!activeAlert)
+            setAlertValue("Fill in at least one field and book id")
     }
 
     return (
@@ -114,11 +119,12 @@ export const Library = () => {
                     <button onClick={clickLoadBook} className="post">download the book in library</button>
                     <button className="getID">get book by id</button>
                     <button className="delete">remove book from library</button>
-                    <button className="put">change book details</button>
+                    <button className="put" onClick={clickChangeDetails}>change book details</button>
                 </div>
                 <div className="wrapperBookCard">
                     {listBook}
                 </div>
+                <Modal active={activeAlert}  setActive={setActiveAlert} value={valueAlert}/>
             </div>
         </>
     )
