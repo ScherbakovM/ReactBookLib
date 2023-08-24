@@ -12,11 +12,8 @@ app.use(cors())
 
 
 app.get('/lib', function (req, res, next) {
-    fs.readFile('db.json', { encoding: 'utf-8' }, (error, data) => {
-        dataObj = JSON.parse(data)
-        res.json(dataObj)
-    })
-
+    res.send(Books)
+    res.end
 })
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -24,15 +21,25 @@ app.post('/download', jsonParser, function (req, res) {
     console.log(typeof(Books))
     Books.push(req.body)
     console.log(Books)
-    write()
+    write(Books)
     res.send('ok')
     res.end
+})
+
+app.post('/dell', jsonParser, function (req, res) {
+    deleteBook(req.body.nameCard)
 })
 
 app.listen(80, function () {
     console.log(colors.bgGreen('CORS-enabled web server listening on port 80'))
 })
 
-function write() {
-    fs.writeFileSync("db.json", JSON.stringify(Books), {encoding : 'utf-8', flag : 'w'})
+function write(arg) {
+    fs.writeFileSync("db.json", JSON.stringify(arg), {encoding : 'utf-8', flag : 'w'})
+}
+
+function deleteBook(cardName) {
+    const result = Books.filter((Books) => Books.nameCard != cardName );
+    console.log(Books)
+    write(result)
 }

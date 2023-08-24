@@ -71,6 +71,24 @@ export const Library = () => {
             })
     }
 
+    function dellData() {
+        if (nameValue != '') {
+            axios.post('http://localhost:80/dell', {
+                nameCard: nameValue
+            })
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error)
+                })
+            clearInput()
+        } else {
+            setActiveAlert(true)
+            setAlertValue("fill in the fields name Book")
+        }
+    }
+
     function clickLoadBook() {
         //необходимо изменить метод получения следующего ид
         const nextID = returnLastItem(lib).id + 1
@@ -78,15 +96,15 @@ export const Library = () => {
             postData(nextID, nameValue, authorValue, descriptionValue)
             clearInput()
         }
-        else  {
+        else {
             setActiveAlert(true)
             setAlertValue("fill in the fields name Book , author, description")
         }
     }
 
     function clickChangeDetails() {
-            setActiveAlert(!activeAlert)
-            setAlertValue("Fill in at least one field and book id")
+        setActiveAlert(!activeAlert)
+        setAlertValue("Fill in at least one field and book id")
     }
 
     return (
@@ -108,23 +126,22 @@ export const Library = () => {
                             onChange={event => setDescriptionValue(event.target.value)}
                             className="description" value={descriptionValue}></input>
                     </div>
-                    <div className="setID">Book ID to search
+                    {/* <div className="setID">Book ID to search
                         <input
                             onChange={event => setFindID(event.target.value)}
                             className="id" value={findID}></input>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="button">
                     {/* <button onClick={click} className="get">get a list of all books</button> */}
-                    <button onClick={clickLoadBook} className="post">download the book in library</button>
-                    <button className="getID">get book by id</button>
-                    <button className="delete">remove book from library</button>
+                    <button title="Заполните все поля" onClick={clickLoadBook} className="post">download the book in library</button>
+                    <button onClick={dellData} className="delete">remove book from library</button>
                     <button className="put" onClick={clickChangeDetails}>change book details</button>
                 </div>
                 <div className="wrapperBookCard">
                     {listBook}
                 </div>
-                <Modal active={activeAlert}  setActive={setActiveAlert} value={valueAlert}/>
+                <Modal active={activeAlert} setActive={setActiveAlert} value={valueAlert} />
             </div>
         </>
     )
