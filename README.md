@@ -36,3 +36,9 @@ npm install express --save
 ```
  npm install axios 
 ```
+
+### Cors для предоставления доступа к серверу
+
+```
+$ npm install cors
+```
