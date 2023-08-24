@@ -2,8 +2,7 @@
 
 Клиентское приложение React &#9883; + Сервер Node js &#128187;
 
-![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/e59ced63-dcc6-4f21-854b-aac0d1c4420c)
-
+![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/fbb3ceb1-e7a1-463a-ada9-4ada83901b6c)
 
 Установка пакетов 
 ### Сборщик проектов Vite
