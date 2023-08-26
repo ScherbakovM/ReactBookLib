@@ -1,6 +1,3 @@
-import { useRef } from 'react';
-
-
 function Modal({ active, setActive, value }) {
 
     function openModal() {
