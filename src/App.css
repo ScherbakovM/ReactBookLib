@@ -8,7 +8,7 @@ body {
   margin: 0;
   padding: 0;
   --black: rgb(41, 41, 41);
-  --mainfot : wheat;
+  --mainfot : rgba(245, 222, 179, 0.983);
   overflow: hidden;
 }
 
@@ -28,17 +28,23 @@ body {
 
 .logo {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 0;
   display: flex;
-  justify-content: center;
   width: 100%;
   height: 40px;
   border: 0.3px solid var(--black);
   color: var(--mainfot);
   font-size: 15px;
   background-color: var(--black);
+}
+
+.logoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
 }
 
 .library {
@@ -63,6 +69,7 @@ body {
   overflow-y: auto;
   box-sizing: border-box;
   padding-left: 30px;
+  padding-right: 30px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -242,7 +249,7 @@ textarea:active, :hover, :focus {
   color: var(--mainfot);
   font-size: 15px;
   box-sizing: border-box;
-  border-bottom: 0.1px solid rgb(178, 178, 178);
+  border-bottom: 0.3px solid rgba(255, 255, 255, 0.089);
 }
 
 .detailsDiv {
@@ -265,8 +272,82 @@ textarea:active, :hover, :focus {
   color: rgb(254, 93, 126);
 }
 
+.find {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 80px;
+  padding: 15px;
+}
+
+.findWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 1px;
+  height: 50px;
+  width: 320px;
+  border-radius: 8px;
+  background-color: rgb(49, 49, 49);
+  box-shadow: 3px 3px 2px rgb(177, 177, 177);
+}
+
+.inputFind::placeholder {
+  color: var(--mainfot);
+}
+
+
+.inputFind {
+  margin-top: 0;
+  width: 80%;
+  height: 98%;
+  padding-left: 20px;
+  background-color: transparent;
+  color: var(--mainfot);
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.inputFind::placeholder {
+  color: rgba(245, 222, 179, 0.498);
+}
+
+.buttonFind {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  height: 100%;
+  padding: 0;
+  background-color: transparent;
+}
+
+.findImg {
+  position: absolute;
+  object-fit: contain;
+  width: 60%;
+  height: 60%;
+}
+
+.inputFind,
+.buttonFind {
+  border: none;
+}
+
+.loadAll {
+  background-color: transparent;
+  font-size: 15px;
+  color: rgb(142, 71, 208);
+}
+
 @media (width < 2200px) {
   .wrapperBookCard {
+    width: 87%;
+  }
+
+  .logoWrapper {
     width: 87%;
   }
 
@@ -279,6 +360,10 @@ textarea:active, :hover, :focus {
   .wrapperBookCard {
     justify-content: center;
     align-items: center;
+    width: 80%;
+  }
+
+  .logoWrapper {
     width: 80%;
   }
 
@@ -301,18 +386,66 @@ textarea:active, :hover, :focus {
 
 
 @media (width < 700px) {
-  .wrapperBookCard {
-    justify-content: center;
-    align-items: center;
-    width: 65%;
+  .library {
+    flex-direction: column-reverse;
   }
 
   .libWrapper {
-    width: 35%;
+    width: 100%;
+    height: max-content;
   }
 
-  input,
-  textarea {
-    width: 80%;
+  .createWrapper {
+    width: 100%;
   }
+
+  .wrapperMenu {
+    height: max-content;
+    gap: 5px;
+  }
+
+  .find {
+    margin-right: 0;
+  }
+
+  .findWrapper {
+    width: 65%;
+  }
+  .wrapperBookCard {
+    margin-left: 0;
+    padding-left: 0;
+    justify-content: center;
+    align-items: center;
+    width: 65%;
+    padding-bottom: 200px;
+  }
+
+  .logoWrapper {
+    width: 100%;
+  }
+
+
+  input,
+  textarea,
+  .post,
+  .delete,
+  .details {
+    width: 40%;
+    height: 30px;
+  }
+
+  .inputFind {
+    width: 150px;
+  }
+  .buttonFind {
+    width: max-content;
+  }
+
+  .wrapperBookCard {
+    width: 100%;
+  }
+  
 }
+
+
+

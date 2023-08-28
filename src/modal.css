@@ -11,6 +11,8 @@
     transition: 0.5s;
     transform: translate(-500px);
     z-index: 1000;
+    --black: rgb(41, 41, 41);
+    --mainfot: wheat;
 }
 
 .modal.active {
@@ -45,10 +47,29 @@
 }
 
 
-.close {cursor: pointer; position: absolute; top: 33px; right: 40px;}
-.close:before, .close:after {content: ""; position: absolute; width: 24px; height: 2px; background: gray;}
-.close:before {transform: rotate(45deg);}
-.close:after {transform: rotate(-45deg);}
+.close {
+    cursor: pointer;
+    position: absolute;
+    top: 33px;
+    right: 40px;
+}
+
+.close:before,
+.close:after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: gray;
+}
+
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}
 
 .ico {
     width: 10%;

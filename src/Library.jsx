@@ -5,7 +5,8 @@ import book_png from './book.png';
 import Modal from "./Modal";
 import ModalCard from "./ModalCard";
 import { motion, AnimatePresence, } from "framer-motion";
-
+import findImg from './find.png';
+import { render } from "react-dom";
 
 const server = 'http://localhost:80/lib';
 const serverDownload = 'http://localhost:80/download';
@@ -13,64 +14,74 @@ const serverDownload = 'http://localhost:80/download';
 
 export const Library = () => {
 
-    const [findID, setFindID] = useState('')
     const [nameValue, setNameValue] = useState('')
     const [authorValue, setAuthorValue] = useState('')
     const [descriptionValue, setDescriptionValue] = useState('')
     const [lib, setlib] = useState([])
-    const [render, setRender] = useState(false)
     const [activeAlert, setActiveAlert] = useState(false)
     const [activeCreate, setActiveCreate] = useState(false)
     const [activeDetails, setActiveDetails] = useState(false)
     const [activeModalCard, setActiveModalCard] = useState(false)
     const [valueAlert, setAlertValue] = useState('')
     const [modalCardValue, setModalCardValue] = useState('')
+    const [listBook, setListBook] = useState([])
+    const [findValue, setFindValue] = useState('')
 
 
     useEffect(() => {
+        setListBook(lib.map((card) => (
+            <div
+                key={card.id}
+                className="bookCard">
+                <div className="photoCard">
+                    <img className="photo" src={book_png}></img>
+                </div>
+                <div className="nameCard">{card.nameCard}</div>
+                <div className="authorCard">{card.authorCard}</div>
+                <button
+                    className="descriptionButton"
+                    onClick={() => {
+                        setModalCardValue(card.descriptionCard)
+                        setActiveModalCard(!activeModalCard)
+                    }}>description
+                </button>
+            </div>
+        )))
+    }, [lib])
+
+
+    function clickDescription(value) {
+        setActiveModalCard(!activeModalCard)
+    }
+
+    const clearInput = () => {
+        setNameValue('')
+        setAuthorValue('')
+        setDescriptionValue('')
+        setFindValue('')
+        render
+    }
+
+    function clickFind() {
+        if (findValue.length > 0) {
+            setlib(lib.filter(book => {
+                if (book.nameCard.toLowerCase().includes(findValue.toLowerCase())) return book
+                else if (book.authorCard.toLowerCase().includes(findValue.toLowerCase())) return book
+                else if (book.descriptionCard.includes(findValue.toLowerCase())) return book
+            }))
+        }
+    }
+
+    function loadAll() {
         axios
             .get(server)
             .then(response => {
                 setlib(response.data)
             }).catch(error => {
                 console.log(error.response.data)
-            }, [lib, render])
-    })
-
-
-    let listBook = lib.map((card) => (
-        <div
-            key={card.id}
-            className="bookCard">
-            <div className="photoCard">
-                <img className="photo" src={book_png}></img>
-            </div>
-            <div className="nameCard">{card.nameCard}</div>
-            <div className="authorCard">{card.authorCard}</div>
-            <button
-                className="descriptionButton"
-                onClick={() => {
-                    setModalCardValue(card.descriptionCard)
-                    setActiveModalCard(!activeModalCard)
-                    }}>description
-            </button>
-        </div>
-    ))
-
-    function clickDescription(value) {
-        setActiveModalCard(!activeModalCard)
+            })
     }
 
-    function returnLastItem(arr) {
-        return arr[arr.length - 1]
-    }
-
-    function clearInput() {
-        setFindID('')
-        setNameValue('')
-        setAuthorValue('')
-        setDescriptionValue('')
-    }
 
     function postData(nextID, nameValue, authorValue, descriptionValue) {
 
@@ -106,7 +117,11 @@ export const Library = () => {
         }
     }
 
-    function clickLoadBook() {
+    function returnLastItem(arr) {
+        return arr[arr.length - 1]
+    }
+
+    function clickCreateBook() {
         //необходимо изменить метод получения следующего ид
         const nextID = returnLastItem(lib).id + 1
         if (nameValue != '' && authorValue != '' && descriptionValue != '') {
@@ -126,11 +141,36 @@ export const Library = () => {
 
     return (
         <>
-            <div className="allLib">
-                <div className="logo">Welcome to online library 📚</div>
+            <div onLoad={loadAll} className="allLib">
+                <div className="logo">
+                    <div className="logoWrapper">
+                        Welcome to online library 📚
+                    </div>
+                </div>
                 <div className="library">
                     <motion.div
                         className="wrapperBookCard">
+                        <div className="find">
+                            <button className="loadAll" onClick={loadAll}>Load all</button>
+                            <div className="findWrapper">
+                                <input
+                                    className="inputFind"
+                                    onChange={event => {
+                                        setFindValue(event.target.value)
+                                        clickFind()
+                                        if (event.target.value == '') {
+                                            loadAll()
+                                        }
+                                    }}
+                                    type="text"
+                                    value={findValue}
+                                    placeholder="enter to search" />
+                                <button
+                                    onClick={clickFind}
+                                    className="buttonFind"><img className="findImg" src={findImg} alt="поиск" />
+                                </button>
+                            </div>
+                        </div>
                         {listBook}
                     </motion.div>
                     <div className="libWrapper">
@@ -140,7 +180,8 @@ export const Library = () => {
                                 className={"createDiv"}
                             >
                                 <span
-                                    className={"createSpan"}>Create</span>
+                                    className={"createSpan"}>Create
+                                </span>
                             </motion.div>
                             <AnimatePresence>
                                 {activeCreate && (
@@ -169,7 +210,7 @@ export const Library = () => {
                                             </textarea>
                                         </div>
                                         <motion.div className="button">
-                                            <button title="Заполните все поля" onClick={clickLoadBook} className="post">download</button>
+                                            <button title="Заполните все поля" onClick={clickCreateBook} className="post">download</button>
                                             <button onClick={dellData} className="delete">remove</button>
                                         </motion.div>
                                     </motion.div>
