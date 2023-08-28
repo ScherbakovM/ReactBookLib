@@ -7,6 +7,11 @@
 
 ![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/030e4a6e-a490-4130-a09a-e676531ecc49)
 
+Добавлен поиск по карточкам
+
+![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/17e0d980-614b-4958-8a85-e2b1a3712fef)
+
+
 
 Установка пакетов 
 ### Сборщик проектов Vite
