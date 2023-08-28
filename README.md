@@ -5,7 +5,13 @@
 Можно загружать новые карточки и удалять (запросы на сервер)   
 Клиентское приложение React &#9883; + Сервер Node js &#128187;   
 
-![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/fbb3ceb1-e7a1-463a-ada9-4ada83901b6c)
+![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/030e4a6e-a490-4130-a09a-e676531ecc49)
+
+Добавлен поиск по карточкам
+
+![image](https://github.com/ScherbakovM/ReactBookLib/assets/109952823/17e0d980-614b-4958-8a85-e2b1a3712fef)
+
+
 
 Установка пакетов 
 ### Сборщик проектов Vite
